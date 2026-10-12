@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+/* --------------------------------------------------------------------------
+   Brand tokens — PURE FUEL SOLUTION
+   -------------------------------------------------------------------------- */
+@theme {
+  --color-navy: #102033;
+  --color-navy-950: #0a1522;
+  --color-navy-800: #182c44;
+  --color-navy-700: #22395a;
+  --color-charcoal: #202a35;
+  --color-steel: #33465c;
+  --color-orange: #f58220;
+  --color-orange-600: #d96c0e;
+  --color-orange-700: #b4580a;
+  --color-orange-50: #fff4ea;
+  --color-mist: #f3f5f7;
+  --color-line: #dde2e8;
+  --color-slate: #4f5d6d;
+  --color-ink: #16212d;
+
+  --font-display: var(--font-barlow-condensed), "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-sans: var(--font-plex-sans), "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --breakpoint-xs: 30rem;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: 0.005em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection { background: var(--color-orange); color: var(--color-navy); }
+  :focus-visible {
+    outline: 3px solid var(--color-orange);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Components
+   -------------------------------------------------------------------------- */
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) { .container-x { padding-inline: 1.5rem; } }
+  @media (min-width: 1024px) { .container-x { padding-inline: 2rem; } }
+
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-orange-700);
+  }
+  .kicker::before {
+    content: "";
+    width: 1.75rem;
+    height: 2px;
+    background: var(--color-orange);
+  }
+  .kicker-light { color: var(--color-orange); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.4rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    border-radius: 2px;
+    border: 2px solid transparent;
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--color-orange); color: var(--color-navy); }
+  .btn-primary:hover { background: #ff9640; }
+  .btn-dark { background: var(--color-navy); color: #fff; }
+  .btn-dark:hover { background: var(--color-navy-700); }
+  .btn-outline-light { border-color: rgba(255,255,255,0.55); color: #fff; }
+  .btn-outline-light:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+  .btn-outline-dark { border-color: var(--color-navy); color: var(--color-navy); }
+  .btn-outline-dark:hover { background: var(--color-navy); color: #fff; }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-orange);
+    padding-bottom: 2px;
+  }
+  .link-arrow svg { transition: transform 160ms ease; }
+  .link-arrow:hover svg { transform: translateX(3px); }
+
+  /* Equipment-nameplate style panel for contractor identifiers */
+  .plate {
+    position: relative;
+    background: linear-gradient(180deg, #1a2d44 0%, #13243a 100%);
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .plate-rivets::before,
+  .plate-rivets::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.28);
+    box-shadow: 0 calc(100% + 0px) 0 transparent;
+  }
+  .plate-rivets::before { left: 8px; }
+  .plate-rivets::after { right: 8px; }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .grid-bg-light {
+    background-image:
+      linear-gradient(rgba(16,32,51,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(16,32,51,0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Form controls */
+  .field-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-bottom: 0.35rem;
+  }
+  .field-input {
+    width: 100%;
+    min-height: 2.9rem;
+    padding: 0.65rem 0.85rem;
+    background: #fff;
+    border: 1px solid #c3ccd6;
+    border-radius: 2px;
+    font-size: 1rem;
+    color: var(--color-ink);
+    transition: border-color 140ms ease, box-shadow 140ms ease;
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--color-navy);
+    box-shadow: 0 0 0 3px rgba(245,130,32,0.35);
+  }
+  .field-input[aria-invalid="true"] { border-color: #b42318; }
+  textarea.field-input { min-height: 8rem; resize: vertical; }
+  select.field-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23102033' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.1rem;
+    padding-right: 2.5rem;
+  }
+  .field-error { margin-top: 0.3rem; font-size: 0.8rem; color: #b42318; }
+  .field-hint { margin-top: 0.3rem; font-size: 0.8rem; color: var(--color-slate); }
+
+  .prose-legal h2 { font-size: 1.6rem; margin-top: 2.5rem; margin-bottom: 0.75rem; color: var(--color-navy); }
+  .prose-legal p, .prose-legal li { color: #2f3b48; margin-bottom: 0.9rem; }
+  .prose-legal ul { list-style: disc; padding-left: 1.25rem; }
+  .prose-legal a { color: var(--color-navy); text-decoration: underline; text-decoration-color: var(--color-orange); }
+}
+
+/* --------------------------------------------------------------------------
+   Motion — scroll-driven reveal (progressive enhancement, no JavaScript).
+   Browsers without scroll-timeline support simply show content.
+   -------------------------------------------------------------------------- */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+.hero-in { animation: hero-in 700ms cubic-bezier(.2,.7,.2,1) both; }
+.hero-in-2 { animation: hero-in 700ms 120ms cubic-bezier(.2,.7,.2,1) both; }
+.hero-in-3 { animation: hero-in 700ms 240ms cubic-bezier(.2,.7,.2,1) both; }
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .hero-in, .hero-in-2, .hero-in-3 { animation: none !important; }
+  *, *::before, *::after { transition-duration: 0ms !important; }
+}
